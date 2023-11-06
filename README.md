@@ -1,8 +1,13 @@
-# React + Vite
+# Programación Backend
+## Unidad 2
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Ejemplo de conexión con backend desde frotend en react js para la unidad de modelos.
 
-Currently, two official plugins are available:
+Tal vez deba ajustar las configuraciones del proyecto en Django 4.x. (asegurarse de que el servidor de frontend se encuentre en la lista habilitada, por ejemplo: `localhost:5173`)
+```
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8000",
+    "http://localhost:5173",
+]
+```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
