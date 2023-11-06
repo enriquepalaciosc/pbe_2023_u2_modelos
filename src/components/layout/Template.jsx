@@ -22,11 +22,11 @@ const Template = ({ children }) => {
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="me-auto" navbar>
                         <NavItem>
-                            <NavLink href="/components/">Clientes</NavLink>
+                            <NavLink href="/clientes">Clientes</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="https://github.com/reactstrap/reactstrap">
-                                GitHub
+                            <NavLink href="#">
+                                Productos
                             </NavLink>
                         </NavItem>
                     </Nav>

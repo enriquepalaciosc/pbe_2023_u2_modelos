@@ -15,8 +15,6 @@ const Clientes = () => {
     // estados para saber si la página se encuentra en carga
     const [cargando, setCargando] = useState(false)
     // mensaje de estado
-    const [mensaje, setMensaje] = useState('')
-    // estado de mostrar mensaje
     const [mensajeVisible, setMensajeVisible] = useState(false)
 
 
@@ -26,13 +24,18 @@ const Clientes = () => {
         const loadClients = async() => {
             await axios.get('http://localhost:8000/api/clientes')
                 .then(response => {
+                    console.log("Respuesta correcta", response)
                     // en caso de respuesta 2xx, establecer el
                     // contenido del estado "clientes" con
                     // lo obtenido desde el backend
+                    console.log("Respuesta correcta, datos:", response.data.clientes)
                     setClientes(response.data.clientes)
                 })
                 // en caso de error, indicar
-                .catch(() => alert('Ha ocurrido un error al obtener los clientes'))
+                .catch((err) => {
+                    console.log("Respuesta incorrecta", err)
+                    alert('Ha ocurrido un error al obtener los clientes')
+                })
         }
 
         // llamada a función para obtener datos desde backend
@@ -63,17 +66,19 @@ const Clientes = () => {
             direccion,
             habilitado: clienteHabilitado
         }
-        console.log(postData)
+        console.log("Enviando REQUEST POST", postData)
         let result = await axios.post('http://localhost:8000/api/clientes', postData)
             .then((response) => {
+                console.log("Respuesta correcta", response)
                 // en caso de respuesta 2xx, entregar aviso
                 setMensajeVisible(true)
                 setCargando(false)
                 cleanFields()
             })
             // en caso de error, indicar
-            .catch(() => {
+            .catch((err) => {
                 alert(`Ha ocurrido un error al ingresar el cliente '${nombre}'`)
+                console.log("Respuesta incorrecta", err)
                 setCargando(false)
             })
 
@@ -149,6 +154,7 @@ const Clientes = () => {
                                 placeholder="Ingrese un nombre"
                                 type="text"
                                 value={nombre}
+                                maxLength={50}
                                 required
                                 onChange={(e) => {
                                     setNombre(e.target.value)
@@ -163,6 +169,7 @@ const Clientes = () => {
                                 placeholder="Ingrese una dirección"
                                 type="text"
                                 value={direccion}
+                                maxLength={100}
                                 required
                                 onChange={(e) => {
                                     setDireccion(e.target.value)
